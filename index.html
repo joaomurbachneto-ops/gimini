@@ -1,52 +1,42 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goleada FC - O Seu Blog de Futebol</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+import os
+import webbrowser
 
-    <header>
-        <h1>⚽ Goleada FC</h1>
-        <p>Tudo sobre o mundo da bola em um só lugar</p>
-    </header>
+# Definindo os dados do jogador
+jogador = {
+    "nome": "Neymar Jr",
+    "posicao": "Atacante / Meio-Campista",
+    "clube": "Al-Hilal",
+    "overall": 89,
+    "imagem": "jogador.jpg" # Nome do arquivo que está na sua pasta
+}
 
-    <nav>
-        <a href="#">Início</a>
-        <a href="#">Notícias</a>
-        <a href="#">Tabelas</a>
-        <a href="#">Contato</a>
-    </nav>
+def mostrar_status():
+    print("\n=== FICHA DO JOGADOR ===")
+    print(f"Nome: {jogador['nome']}")
+    print(f"Posição: {jogador['posicao']}")
+    print(f"Clube Atual: {jogador['clube']}")
+    print(f"Overall: {jogador['overall']}")
+    print("========================\n")
 
-    <main class="container">
-        
-        <article class="post">
-            <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?w=800" alt="Bola de futebol no gramado" class="post-img">
-            <div class="post-content">
-                <h2>Os favoritos para o título do campeonato deste ano</h2>
-                <span class="date">Publicado em: 30 de Junho de 2026</span>
-                <p>A temporada está pegando fogo! Com contratações de peso e times mostrando um futebol ofensivo, a disputa pela liderança nunca esteve tão acirrada. Quem você acha que leva a taça?</p>
-                <a href="#" class="read-more">Leia mais</a>
-            </div>
-        </article>
+def abrir_imagem():
+    # Verifica se a imagem realmente existe na pasta antes de abrir
+    if os.path.exists(jogador["imagem"]):
+        print(f"Abrindo a imagem de {jogador['nome']}...")
+        webbrowser.open(jogador["imagem"])
+    else:
+        print(f"Erro: O arquivo '{jogador['imagem']}' não foi encontrado na pasta!")
 
-        <article class="post">
-            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800" alt="Estádio de futebol lotado" class="post-img">
-            <div class="post-content">
-                <h2>Análise tática: Como a nova formação mudou o meio-campo</h2>
-                <span class="date">Publicado em: 29 de Junho de 2026</span>
-                <p>Explicamos em detalhes como a mudança para o esquema tático moderno deu mais liberdade para os alas e garantiu maior posse de bola nas últimas partidas.</p>
-                <a href="#" class="read-more">Leia mais</a>
-            </div>
-        </article>
+# Loop de comandos
+while True:
+    print("Comandos disponíveis: [1] Ver Status | [2] Ver Imagem | [3] Sair")
+    comando = input("Digite o número do comando: ")
 
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Goleada FC. Criado com ❤️ por um fã de futebol.</p>
-    </footer>
-
-</body>
-</html>
+    if comando == "1":
+        mostrar_status()
+    elif comando == "2":
+        abrir_imagem()
+    elif comando == "3":
+        print("Saindo do programa... Valeu!")
+        break
+    else:
+        print("Comando inválido! Tente novamente.\n")
